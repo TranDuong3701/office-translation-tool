@@ -5,8 +5,5 @@ export default defineNuxtConfig({
     strict: true,
     shim: false,
   },
-  modules: ['@element-plus/nuxt', '@pinia/nuxt'],
-  elementPlus: {
-    icon: 'ElIcon',
-  },
+  modules: ['@pinia/nuxt'],
 })
