@@ -1,5 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  components: [
+    {
+      path: '~/components/',
+      pathPrefix: false,
+    },
+  ],
   css: [
     '~/assets/scss/index.scss',
     'primevue/resources/themes/saga-blue/theme.css',
@@ -7,6 +13,15 @@ export default defineNuxtConfig({
     'primeicons/primeicons.css',
     'primeflex/primeflex.css',
   ],
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: '@import "@/assets/scss/utils/index.scss";',
+        },
+      },
+    },
+  },
   typescript: {
     strict: true,
     shim: false,
