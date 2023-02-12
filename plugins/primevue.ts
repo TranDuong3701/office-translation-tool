@@ -6,6 +6,10 @@ import Toast from 'primevue/toast'
 import Steps from 'primevue/steps'
 import FileUpload from 'primevue/fileupload'
 import ProgressBar from 'primevue/progressbar'
+import DataTable from 'primevue/datatable'
+import Column from 'primevue/column'
+import Textarea from 'primevue/textarea'
+import Dialog from 'primevue/dialog'
 
 export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.use(PrimeVue, { ripple: true })
@@ -16,4 +20,8 @@ export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.component('Steps', Steps)
   nuxtApp.vueApp.component('FileUpload', FileUpload)
   nuxtApp.vueApp.component('ProgressBar', ProgressBar)
+  nuxtApp.vueApp.component('DataTable', DataTable)
+  nuxtApp.vueApp.component('Column', Column)
+  nuxtApp.vueApp.component('Textarea', Textarea)
+  nuxtApp.vueApp.component('Dialog', Dialog)
 })

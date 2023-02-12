@@ -7,6 +7,22 @@ export interface Document {
   project: null
   createdAt: string
   updatedAt: string
-  segments: any[]
+  segments?: any[]
   progress: number | null
+}
+
+export interface Segment {
+  _id: string
+  source: string
+  target: string | null
+  document: string | Document
+  isLock: boolean
+  createdAt: string
+  updatedAt: string
+  metaData: SegmentMetaData
+}
+
+export interface SegmentMetaData {
+  sheetId?: number
+  cellAddress?: string
 }

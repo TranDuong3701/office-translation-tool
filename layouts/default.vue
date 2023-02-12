@@ -23,15 +23,15 @@
     position: fixed;
     width: 100%;
     background: rgb(255, 255, 255);
-    padding: 16px 5%;
+    padding: 16px 7.5%;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    z-index: 10;
   }
 
   > .main-layout {
-    height: 100vh;
     width: 85%;
     margin: auto;
-    padding-top: 15vh;
+    padding-top: 13vh;
   }
 }
 .header-layout {

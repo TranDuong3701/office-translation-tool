@@ -2,7 +2,7 @@
 const steps = ref([
   {
     label: 'Upload document',
-    to: '/documents/',
+    to: '/documents',
   },
   {
     label: 'Translate document',

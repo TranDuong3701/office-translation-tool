@@ -17,8 +17,21 @@ export const useDocumentStore = defineStore('document', () => {
     catch (error) {}
   }
 
+  const getDocument = async (id: string) => {
+    try {
+      const document = await documentService.getDocument(id)
+      state.document = document
+    }
+    catch (error) {
+
+    }
+  }
+
   return {
     ...toRefs(state),
     importDocument,
+    getDocument,
   }
+}, {
+  persist: true,
 })

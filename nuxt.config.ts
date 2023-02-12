@@ -26,7 +26,7 @@ export default defineNuxtConfig({
     strict: true,
     shim: false,
   },
-  modules: ['@pinia/nuxt'],
+  modules: ['@pinia/nuxt', '@pinia-plugin-persistedstate/nuxt'],
   build: {
     transpile: ['primevue'],
   },

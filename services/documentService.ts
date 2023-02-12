@@ -7,4 +7,11 @@ export const documentService = {
 
     return info
   },
+
+  async getDocument(id: string): Promise<Document> {
+    const info: Document = await http.get(`/api/v1/documents/${id}`)
+
+    return info
+  },
+
 }
