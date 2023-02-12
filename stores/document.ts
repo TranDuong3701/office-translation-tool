@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { documentService } from '@/services'
+import { documentService, segmentService } from '@/services'
 import type { Document } from '@/types'
 
 export const useDocumentStore = defineStore('document', () => {
@@ -27,10 +27,23 @@ export const useDocumentStore = defineStore('document', () => {
     }
   }
 
+  const translateSegment = async (id: string, data: Record<string, any>) => {
+    try {
+      const segment = await segmentService.translateSegment(id, data)
+
+      const index = state.document!.segments.findIndex(segment => segment._id === id)
+      state.document!.segments.splice(index, 1, segment)
+    }
+    catch (error) {
+
+    }
+  }
+
   return {
     ...toRefs(state),
     importDocument,
     getDocument,
+    translateSegment,
   }
 }, {
   persist: true,
