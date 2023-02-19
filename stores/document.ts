@@ -9,6 +9,14 @@ export const useDocumentStore = defineStore('document', () => {
     document: null,
   })
 
+  const totalSegments = computed(() => {
+    return state.document!.segments!.length
+  })
+
+  const translatedSegments = computed(() => {
+    return state.document!.segments!.filter((segment: { target: any }) => segment.target).length
+  })
+
   const importDocument = async (formData: FormData) => {
     try {
       const document = await documentService.importDocument(formData)
@@ -39,11 +47,22 @@ export const useDocumentStore = defineStore('document', () => {
     }
   }
 
+  const downloadDocument = async (id: string, title: string) => {
+    try {
+      await documentService.downloadDocument(id, title)
+    }
+    catch (error) {
+    }
+  }
+
   return {
     ...toRefs(state),
     importDocument,
     getDocument,
     translateSegment,
+    downloadDocument,
+    translatedSegments,
+    totalSegments,
   }
 }, {
   persist: true,

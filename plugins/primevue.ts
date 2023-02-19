@@ -10,6 +10,9 @@ import DataTable from 'primevue/datatable'
 import Column from 'primevue/column'
 import Textarea from 'primevue/textarea'
 import Dialog from 'primevue/dialog'
+import Chart from 'primevue/chart'
+import Card from 'primevue/card'
+import Toolbar from 'primevue/toolbar'
 
 export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.use(PrimeVue, { ripple: true })
@@ -24,4 +27,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.component('Column', Column)
   nuxtApp.vueApp.component('Textarea', Textarea)
   nuxtApp.vueApp.component('Dialog', Dialog)
+  nuxtApp.vueApp.component('Chart', Chart)
+  nuxtApp.vueApp.component('Card', Card)
+  nuxtApp.vueApp.component('Toolbar', Toolbar)
 })

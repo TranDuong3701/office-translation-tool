@@ -40,29 +40,33 @@ const handleTranslateSegment = async () => {
 const segmentStatusIcon = (target: string) => {
   return target ? 'pi pi-check' : 'pi pi-unlock'
 }
-const isExceededProgressBar = computed(() => Number(document.value!.progress) > 100)
+
+const router = useRouter()
+const navigateToDownload = () => router.push('/documents/download')
+const navigateToImport = () => router.push('/documents')
 </script>
 
 <template>
   <div class="translation-screen">
-    <div class="document-info section">
-      <h3 class="name">
-        {{ document!.name }}
-      </h3>
-      <ProgressBar
-        :value="document?.progress || 0"
-        :show-value="false"
-        class="md:w-20rem h-1rem w-full md:ml-auto"
-        :class="[{ 'exceeded-progress-bar': isExceededProgressBar }]"
-      />
-    </div>
+    <Toolbar class="document-info section">
+      <template #start>
+        <h3 class="name">
+          {{ document!.name }}
+        </h3>
+      </template>
+      <template #end>
+        <Button label="New" icon="pi pi-plus" class="mr-2" @click="navigateToImport" />
+        <Button label="Download" icon="pi pi-download" class="p-button-success" @click="navigateToDownload" />
+      </template>
+    </Toolbar>
     <div class="document-details section shadow-1">
       <DataTable
         v-if="document"
         show-gridlines
         :value="document.segments"
         :scrollable="true"
-        scroll-height="600px"
+        scroll-height="620px"
+        class="shadow-1"
       >
         <Column field="source" header="Source" style="min-width: 200px">
           <template #body="{ data: { source } }">
@@ -135,12 +139,22 @@ const isExceededProgressBar = computed(() => Number(document.value!.progress) > 
 </template>
 
 <style scoped lang="scss">
+::v-deep(.p-toolbar) {
+ width: 100%;
+ padding: 0 16px;
+}
+
+::v-deep(.p-datatable){
+  padding-bottom: 16px;
+}
 .translation-screen {
+  background: var(--gray-50);
   > .document-info {
+    width: 100%;
     display: flex;
     align-items: center;
+    justify-content: space-between;
   }
-
 }
 .section {
   margin-top: 16px;

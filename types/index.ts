@@ -9,6 +9,7 @@ export interface Document {
   updatedAt: string
   segments?: any[]
   progress: number | null
+  size: number
 }
 
 export interface Segment {

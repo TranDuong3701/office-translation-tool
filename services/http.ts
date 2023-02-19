@@ -1,4 +1,4 @@
-import type { AxiosInstance, Method } from 'axios'
+import type { AxiosInstance, Method, ResponseType } from 'axios'
 import axios from 'axios'
 import NProgress from 'nprogress'
 const apiBaseUrl = 'http://localhost:8000'
@@ -18,18 +18,18 @@ class Http {
     method: Method,
     url: string,
     data: Record<string, any> = {},
-    onUploadProgress?: any,
+    responseType?: ResponseType,
   ) {
     return this.client.request({
       url,
       method,
       data,
-      onUploadProgress,
+      responseType,
     }) as Promise<{ data: T }>
   }
 
-  public async get<T>(url: string) {
-    return (await this.request<T>('get', url)).data as T
+  public async get<T>(url: string, responseType?: ResponseType) {
+    return (await this.request<T>('get', url, {}, responseType)).data as T
   }
 
   public async post<T>(
