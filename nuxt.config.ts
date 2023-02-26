@@ -26,9 +26,16 @@ export default defineNuxtConfig({
     strict: true,
     shim: false,
   },
-  modules: ['@pinia/nuxt', '@pinia-plugin-persistedstate/nuxt'],
+  modules: ['@pinia/nuxt', '@pinia-plugin-persistedstate/nuxt', '@vueuse/nuxt'],
   build: {
     transpile: ['primevue'],
   },
-  ssr: false,
+  runtimeConfig: {
+    public: {
+      apiBaseUrl: process.env.API_BASE_URL,
+      githubOauthClientId: process.env.GITHUB_OAUTH_CLIENT_ID,
+      githubOauthClientSecret: process.env.GITHUB_OAUTH_CLIENT_SECRET,
+      githubOauthRedirect: process.env.GITHUB_OAUTH_REDIRECT_URL,
+    },
+  },
 })

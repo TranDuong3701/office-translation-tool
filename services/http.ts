@@ -59,6 +59,8 @@ class Http {
     // Intercept the request to make sure the token is injected into the header.
     this.client.interceptors.request.use((config) => {
       Http.setProgressBar()
+      config.headers.Authorization = `Bearer ${localStorage.getItem('access_token')?.toString() || ''}`
+
       return config
     })
 

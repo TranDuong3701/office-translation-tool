@@ -13,6 +13,7 @@ import Dialog from 'primevue/dialog'
 import Chart from 'primevue/chart'
 import Card from 'primevue/card'
 import Toolbar from 'primevue/toolbar'
+import Avatar from 'primevue/avatar'
 
 export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.use(PrimeVue, { ripple: true })
@@ -30,4 +31,5 @@ export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.component('Chart', Chart)
   nuxtApp.vueApp.component('Card', Card)
   nuxtApp.vueApp.component('Toolbar', Toolbar)
+  nuxtApp.vueApp.component('Avatar', Avatar)
 })

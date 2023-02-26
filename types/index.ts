@@ -27,3 +27,13 @@ export interface SegmentMetaData {
   sheetId?: number
   cellAddress?: string
 }
+
+export interface User {
+  _id: string
+  username: string
+  email: string
+  avatar?: string
+  role: string
+  createdAt: string
+  updatedAt: string
+}

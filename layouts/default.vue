@@ -1,3 +1,20 @@
+<script lang="ts" setup>
+import { storeToRefs } from 'pinia'
+import { useAuthStore } from '@/stores/auth'
+
+const authStore = useAuthStore()
+const { user } = storeToRefs(authStore)
+const { getUser } = authStore
+
+const accessToken = useCookie('access_token')
+watchEffect(async () => {
+  if (accessToken.value) {
+    useLocalStorage('access_token', accessToken.value)
+    await getUser()
+  }
+})
+</script>
+
 <template>
   <div class="container-layout">
     <header class="header-layout">
@@ -6,6 +23,21 @@
         src="@/assets/images/default-monochrome-black.svg"
         alt="Office translation tool logo"
       >
+      <div class="userInfo">
+        <Button v-if="!user" class="login-btn" aria-label="login-btn">
+          <nuxt-link :to="getGitHubUrl()">
+            <i class="pi pi-github mr-2" />
+            Login
+          </nuxt-link>
+        </Button>
+        <Avatar
+          v-else
+          class="avatar"
+          :image="user.avatar"
+          size="large"
+          shape="circle"
+        />
+      </div>
     </header>
     <main class="main-layout">
       <slot />
@@ -45,6 +77,8 @@
     padding: 16px 7.5%;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     z-index: 10;
+    display: flex;
+    justify-content: space-between;
   }
 
   > .main-layout {
@@ -66,9 +100,29 @@
   }
 }
 .header-layout {
-  .logo {
+  > .logo {
     width: 50%px;
     height: 50px;
+  }
+
+  > .p-button.login-btn {
+    background: linear-gradient(
+      to left,
+      var(--bluegray-700) 50%,
+      var(--bluegray-800) 50%
+    );
+    background-size: 200% 100%;
+    background-position: right bottom;
+    transition: background-position 0.5s ease-out;
+    color: #fff;
+    border-color: var(--bluegray-800);
+    padding: 0 1.5rem !important;
+  }
+  > .p-button.login-btn:hover {
+    background-position: left bottom;
+  }
+  > .p-button.login-btn:focus {
+    box-shadow: 0 0 0 1px var(--bluegray-500);
   }
 }
 
